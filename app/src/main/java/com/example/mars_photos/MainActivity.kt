@@ -8,20 +8,24 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 class MainActivity : AppCompatActivity() {
     lateinit var textView: TextView
     private val viewModel: OverviewViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         textView = findViewById(R.id.tvmessage)
-        textView.text = viewModel.status.value.toString()
+
+        viewModel.status.observe(this) {
+            textView.text = viewModel.status.value.toString()
+        }
+
     }
 
-    override fun onResume() {
-
-        super.onResume()
-    }
 }

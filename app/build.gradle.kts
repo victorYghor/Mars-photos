@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -26,6 +29,10 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -36,8 +43,10 @@ android {
 }
 
 dependencies {
+    implementation("androidx.databinding:databinding-common:8.1.1")
     val lifecycle_version = "2.6.2"
     val arch_version = "2.2.0"
+
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -72,5 +81,8 @@ dependencies {
 
     //LifeCycleViewModel
     implementation("androidx.fragment:fragment-ktx:1.6.1")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
 }
