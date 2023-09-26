@@ -14,8 +14,8 @@ class OverviewViewModel(): ViewModel() {
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
 
-    private val _photos = MutableLiveData<MarsPhoto>()
-    val photos: LiveData<MarsPhoto> = _photos
+    private val _photos = MutableLiveData<List<MarsPhoto>>()
+    val photos: LiveData<List<MarsPhoto>> = _photos
     init {
         getMarsPhotos()
     }
@@ -23,14 +23,9 @@ class OverviewViewModel(): ViewModel() {
     private fun getMarsPhotos() {
         viewModelScope.launch {
             try {
-                val listResult = MarsApi.retrofitService.getPhotos()
-                // por algum motivo o codigo aqui não é executado
-                Log.i("reach", "try to catch $listResult")
-                Log.i("before", "before this is the value of _status ${_status.value}")
-                Log.i("before", " before this is the value of status ${status.value}")
-                _status.value = "Success: ${listResult.size} Mars photos retrieved"
-                Log.i("after", "after this is the value of _status ${_status.value}")
-                Log.i("after", " after this is the value of status ${status.value}")
+                _photos.value = MarsApi.retrofitService.getPhotos()
+                _status.value = "Success Mars photos retrieved"
+
             } catch (e: Exception) {
                 _status.value = "This have a ${e.message} problem, and is not possible" +
                         " to show the photos"
