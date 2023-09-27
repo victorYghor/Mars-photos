@@ -6,12 +6,12 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.mars_photos.overview.OverviewViewModel" />
+            type="com.example.mars_photos.overview.OverViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".OverviewFragment">
+        tools:context="com.example.mars_photos.overview.OverViewFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photos_grid"
@@ -25,10 +25,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            app:listData="@{viewModel.photos}"
+            app:caseData="@{viewModel.photos}"
             tools:itemCount="16"
             tools:listitem="@layout/grid_view_item" />
 
+        <!-- this is for show the load images in the scree -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

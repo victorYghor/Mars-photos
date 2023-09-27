@@ -7,10 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mars_photos.network.MarsApi
 import com.example.mars_photos.network.MarsPhoto
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class OverviewViewModel(): ViewModel() {
+class OverViewModel(): ViewModel() {
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
 
