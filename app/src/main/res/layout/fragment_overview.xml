@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="OverViewModel"
             type="com.example.mars_photos.overview.OverViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,12 +25,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            app:caseData="@{viewModel.photos}"
+            app:caseData="@{OverViewModel.photos}"
             tools:itemCount="16"
             tools:listitem="@layout/grid_view_item" />
 
         <!-- this is for show the load images in the scree -->
 
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:marsApiStatus="@{OverViewModel.status}"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
